@@ -1,0 +1,21 @@
+.funddetail-body{
+    width: 772px;
+    margin: 0 auto;
+}
+.form-control{
+    width: 320px;
+    margin-bottom: 7px;
+}
+.control-label{
+    margin-bottom: 7px;
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+    font-weight: normal;
+}
+.fund-desc p{
+    margin-bottom: 15px;
+}
+.form-group{
+    margin: 0 0 0 -15px;
+}

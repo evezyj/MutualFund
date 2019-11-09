@@ -1,0 +1,29 @@
+.dashboard {
+    clear: both;
+    height: 27px;
+    margin: -20px auto 0 auto;
+    width: 772px;
+    padding: 0px;
+    background: url("../../assets/images/top_right_banner.jpg") repeat-x 0 -15px;
+}
+li{
+    list-style-type: none;
+    vertical-align: middle;
+    height: 27px;
+    line-height: 27px;
+    color: white;
+    display: inline-block;
+    padding-right: 8px;
+}
+.headernav{
+    padding-left: 0px;
+}
+.headernav ul li {
+    float: left;
+    font-size: 12px;
+}
+
+.headerright ul li{
+    font-size: 12px;
+    float: right;
+}

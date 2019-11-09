@@ -1,8 +1,9 @@
 
 .banner{
-    margin: 5px auto;
+    margin: 0px auto;
     width: 772px;
     clear: both;
     height: 85px;
+    padding: 0px;
     background: url("../../assets/images/top_right_banner.jpg") repeat-x scroll 0 -2px transparent;
 }
