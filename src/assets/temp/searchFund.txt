@@ -1,0 +1,189 @@
+	
+Response body
+Download
+{
+  "responseCode": 0,
+  "data": [
+    {
+      "code": "TPFMB",
+      "fundCurrency": "USD",
+      "fundName": "FRANKLIN MUTUAL BEACON FUND(USD) -A (0828)",
+      "fundType": "EQUITY",
+      "unitPrice": "3.5",
+      "riskLevel": "5",
+      "fundHouse": {
+        "code": "TSF",
+        "name": "FRANKLIN TEMPLETON GLOBAL ADVISORS"
+      }
+    },
+    {
+      "code": "TPFMB01",
+      "fundCurrency": "USD",
+      "fundName": "FRANKLIN MUTUAL BEACON FUND(USD) -A (0826)",
+      "fundType": "EQUITY",
+      "unitPrice": "5.5",
+      "riskLevel": "3",
+      "fundHouse": {
+        "code": "TSF",
+        "name": "FRANKLIN TEMPLETON GLOBAL ADVISORS"
+      }
+    },
+    {
+      "code": "TPFMB02",
+      "fundCurrency": "USD",
+      "fundName": "FRANKLIN MUTUAL BEACON FUND(USD) -A (0827)",
+      "fundType": "BOND",
+      "unitPrice": "2.5",
+      "riskLevel": "1",
+      "fundHouse": {
+        "code": "TSF",
+        "name": "FRANKLIN TEMPLETON GLOBAL ADVISORS"
+      }
+    },
+    {
+      "code": "MST13",
+      "fundCurrency": "TWD",
+      "fundName": "BGF EURO BOND CLASS A3(TWD)",
+      "fundType": "BOND",
+      "unitPrice": "7.8",
+      "riskLevel": "2",
+      "fundHouse": {
+        "code": "MST",
+        "name": "BLACK ROCK(HONG KONG) LIMITED"
+      }
+    },
+    {
+      "code": "MST11",
+      "fundCurrency": "TWD",
+      "fundName": "BGF EURO BOND CLASS A1(TWD)",
+      "fundType": "EQUITY",
+      "unitPrice": "13.2",
+      "riskLevel": "1",
+      "fundHouse": {
+        "code": "MST",
+        "name": "BLACK ROCK(HONG KONG) LIMITED"
+      }
+    },
+    {
+      "code": "MST12",
+      "fundCurrency": "TWD",
+      "fundName": "BGF EURO BOND CLASS A2(TWD)",
+      "fundType": "EQUITY",
+      "unitPrice": "3.9",
+      "riskLevel": "2",
+      "fundHouse": {
+        "code": "MST",
+        "name": "BLACK ROCK(HONG KONG) LIMITED"
+      }
+    },
+    {
+      "code": "AAE01",
+      "fundCurrency": "TWD",
+      "fundName": "EURO LIQUIDITY - CLASS AE 01- TWD",
+      "fundType": "EQUITY",
+      "unitPrice": "1.4",
+      "riskLevel": "3",
+      "fundHouse": {
+        "code": "AEB",
+        "name": "AMERICAN EXPRESS BANK LTD."
+      }
+    },
+    {
+      "code": "AAE02",
+      "fundCurrency": "TWD",
+      "fundName": "EURO LIQUIDITY - CLASS AE 02- TWD",
+      "fundType": "EQUITY",
+      "unitPrice": "3.8",
+      "riskLevel": "5",
+      "fundHouse": {
+        "code": "AEB",
+        "name": "AMERICAN EXPRESS BANK LTD."
+      }
+    },
+    {
+      "code": "AAE03",
+      "fundCurrency": "TWD",
+      "fundName": "EURO LIQUIDITY - CLASS AE 03- TWD",
+      "fundType": "EQUITY",
+      "unitPrice": "4.2",
+      "riskLevel": "6",
+      "fundHouse": {
+        "code": "AEB",
+        "name": "AMERICAN EXPRESS BANK LTD."
+      }
+    },
+    {
+      "code": "FIIBD01",
+      "fundCurrency": "TWD",
+      "fundName": "FIDELITY INTERNATIONAL BOND FUND",
+      "fundType": "BOND",
+      "unitPrice": "3.9",
+      "riskLevel": "1",
+      "fundHouse": {
+        "code": "FID",
+        "name": "FIL INVESTMENT MANAGEMENT (HONG KONG) LIMITED"
+      }
+    },
+    {
+      "code": "FIIBD02",
+      "fundCurrency": "TWD",
+      "fundName": "FIDELITY INTERNATIONAL BOND FUND 02",
+      "fundType": "BOND",
+      "unitPrice": "4.1",
+      "riskLevel": "2",
+      "fundHouse": {
+        "code": "FID",
+        "name": "FIL INVESTMENT MANAGEMENT (HONG KONG) LIMITED"
+      }
+    },
+    {
+      "code": "FIIBD03",
+      "fundCurrency": "TWD",
+      "fundName": "FIDELITY INTERNATIONAL BOND FUND 03",
+      "fundType": "BOND",
+      "unitPrice": "5.2",
+      "riskLevel": "3",
+      "fundHouse": {
+        "code": "FID",
+        "name": "FIL INVESTMENT MANAGEMENT (HONG KONG) LIMITED"
+      }
+    },
+    {
+      "code": "AFYA1",
+      "fundCurrency": "TWD",
+      "fundName": "AB - GLOBAL HIGH YIELD PORTFOLIO AT DISTN",
+      "fundType": "EQUITY",
+      "unitPrice": "7.5",
+      "riskLevel": "6",
+      "fundHouse": {
+        "code": "ALL",
+        "name": "ALLIANZ BERANSTEIN (LUX) S.A."
+      }
+    }
+  ],
+  "errorCode": null,
+  "errorMsg": null
+}
+
+
+
+{
+  "accountNo": "string",
+  "customerNo": "string",
+  "fund": {
+    "code": "string",
+    "fundCurrency": "string",
+    "fundHouse": {
+      "code": "string",
+      "name": "string"
+    },
+    "fundName": "string",
+    "fundType": "string",
+    "riskLevel": "string",
+    "unitPrice": "string"
+  },
+  "lastModifiedTime": "string",
+  "orderReferenceNumber": 0,
+  "originalPrice": 0,
+  "quantity": 0
+}
