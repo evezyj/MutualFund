@@ -7,10 +7,8 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">基金公司：</label>
     <div class="col-sm-10">
-      <select class="form-control" id="fund-company">
-        <option>平安银行</option>
-        <option>建设银行</option>
-        <option>招商银行</option>
+      <select class="form-control" id="fund-company" >
+        <option *ngFor = "let data of dataList.data">{{data.fundHouse.name}}</option>
       </select>
     </div>
   </div>
@@ -19,9 +17,7 @@
     <label class="col-sm-2 control-label">基金类别：</label>
     <div class="col-sm-10">
       <select class="form-control" id="fund-type">
-        <option>基金</option>
-        <option>债券</option>
-        <option>股票</option>
+        <option *ngFor = "let data of dataList.data">{{data.fundType}}</option>
       </select>
     </div>
   </div>

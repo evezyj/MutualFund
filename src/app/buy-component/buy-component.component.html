@@ -3,7 +3,7 @@
 <p class="buy-desc">请在您已有的基金或者目前所列出的基金选单中，选取您所要投资的基金</p>
 
 <table class="table table-condensed">
-  <tr class="buy-table-title">
+  <tr class="buy-table-title text-size">
     <th>您目前持有的基金</th>
     <th>特定金额信托账户</th>
     <th>信托账户类别</th>
@@ -11,69 +11,14 @@
     <th>基金参考价值</th>
     <th>其他交易选择</th>
   </tr>
-<tr>
-  <td>招商银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>RMB 0.23</td>
+<tr *ngFor="let holding of holdingResp.data" class="text-size">
+  <td>{{holding.fund.fundName}}</td>
+  <td>基金：{{holding.accountNo}}</td>
+  <td>{{holding.fund.fundType}}</td>
+  <td>{{holding.fund.unitPrice}}</td>
+  <td>{{holding.originalPrice}}</td>
   <td>更多基金咨询</td>
 </tr>
-<tr class="warning">
-  <td>平安银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>TWD 0.23</td>
-  <td>更多基金咨询</td>
-</tr>
-<tr>
-  <td>招商银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>RMB 0.23</td>
-  <td>更多基金咨询</td>
-</tr>
-<tr class="warning">
-  <td>平安银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>TWD 0.23</td>
-  <td>更多基金咨询</td>
-</tr>
-<tr>
-  <td>招商银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>RMB 0.23</td>
-  <td>更多基金咨询</td>
-</tr>
-<tr class="warning">
-  <td>平安银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>TWD 0.23</td>
-  <td>更多基金咨询</td>
-</tr>
-<tr>
-  <td>招商银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>RMB 0.23</td>
-  <td>更多基金咨询</td>
-</tr>
-<tr class="warning">
-  <td>平安银行基金</td>
-  <td>基金：XXXXXXX12356</td>
-  <td>特定金钱信托</td>
-  <td>119.587000</td>
-  <td>TWD 0.23</td>
-  <td>更多基金咨询</td>
-</tr>
+
 </table>
 </div>

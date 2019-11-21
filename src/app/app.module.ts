@@ -7,6 +7,8 @@ import { BannerComponent } from './banner/banner.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FunddetailComponent } from './funddetail/funddetail.component';
 
+import {HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { FunddetailComponent } from './funddetail/funddetail.component';
     FunddetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
