@@ -1,8 +1,8 @@
 import { HoldingDetails } from "./HoldingDetails";
 
-export class HoldingResp{
+export class HoldingResp {
     responseCode: any;
-    data: HoldingDetails;
+    data: Array<HoldingDetails>;
     errorCode: any;
-    errorMsg:any;
+    errorMsg: any;
 }

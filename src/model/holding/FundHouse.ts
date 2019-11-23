@@ -1,4 +1,4 @@
-export class FundHouse{
-    code:string;
-    name:string;  
+export class FundHouse {
+    code: string;
+    name: string;
 }
