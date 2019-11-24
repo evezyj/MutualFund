@@ -22,3 +22,25 @@
 .text-size-11{
     font-size: 11px;
 }
+
+.fund-btn {  
+    color: blue;      
+    background-color: #FFFFFF;  
+    border: 0px none; 
+    /* font-family: "宋体";   */
+    font-size: 15px;  
+    text-decoration:underline;
+}  
+.fund-btn:hover{  
+    color:red;  
+    border: none;  
+    cursor: hand;  
+    cursor: pointer;  
+    text-decoration:underline;
+}  
+.fund-btn:focus {   
+    outline: none;
+}
+.bug-fund-value{
+    margin-top: 5px;
+}
