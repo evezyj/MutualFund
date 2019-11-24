@@ -9,6 +9,8 @@ import { FunddetailComponent } from './funddetail/funddetail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { StorageService } from './services/storage.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

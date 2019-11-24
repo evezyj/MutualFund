@@ -27,10 +27,147 @@
   </div>
 
   <div class="fund-company-desc">
-    <p><a href="/" *ngFor="let data of fundnames">{{data.fundName}}</a></p>
+    <button class="fund-btn" *ngFor="let data of fundnames" (click)="submitFund(data)" data-toggle="modal" data-target="#myModal">{{data.fundName}}</button>
   </div>
 
   <!-- <div class="cancel-btn">
     <button class="btn-primary btn">取消</button>
   </div> -->
 </div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 720px;">
+    <div class="modal-content" style="width: 720px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" 
+            aria-hidden="true">×
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          申购信息
+        </h4>
+      </div>
+      <div class="modal-body">
+        
+          <div class="row">
+            <label for="firstname" class="col-sm-offset-2 col-sm-2 control-label">信托类别:</label>
+            <div class="col-sm-6">
+              <select class="form-control" disabled>
+                <option selected>台湾特定金钱信托</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label for="lastname" class="col-sm-offset-2 col-sm-2 control-label">基金名称:</label>
+            <div class="col-sm-6 default-value bug-fund-value bug-fund-value" *ngIf="modalFund!=''">
+              {{modalFund.fundName}}
+            </div>
+            <div class="col-sm-6 default-value bug-fund-value bug-fund-value" *ngIf="modalFund==''">
+              
+            </div>
+          </div>
+          <div class="row">
+            <label for="lastname" class="col-sm-offset-2 col-sm-2 control-label">单位净值:</label>
+            <div class="col-sm-6 default-value bug-fund-value">
+              USD {{FundOriginalPrice}} (参考价)
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-offset-2 col-sm-2 control-label">存到:</label>
+            <div class="col-sm-6 default-value bug-fund-value">
+              基金：{{fundaccountNo}}
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-offset-2 col-sm-2 control-label">最低申购金额:</label>
+            <div class="col-sm-6 default-value bug-fund-value">
+              TWD 30,000.00
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-offset-2 col-sm-2 control-label">申购金额:</label>
+            <div class="col-sm-1">
+              <input type="text" class="form-control" placeholder="TWD" disabled>
+            </div>
+            <div class="col-sm-2">
+              <input type="text" id="quantity" name="quantity" class="form-control">
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="consent" (change)="setConsentFlag()">本人已阅申购说明书
+                </label>
+              </div>
+            </div>
+          </div> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" data-toggle="modal" data-target="#confirmationModal" (click)="submitBuyQuantity()">提交</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="width: 720px;">
+    <div class="modal-content" style="width: 720px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" 
+            aria-hidden="true">
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          确认申购
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <label for="lastname" class="col-sm-offset-2 col-sm-2 control-label">基金名称:</label>
+          <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction!=undefined">
+            {{transaction.fund.fundName}}
+          </div>
+          <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction==undefined">
+            
+          </div>
+        </div>
+
+          <div class="row">
+            <label for="lastname" class="col-sm-offset-2 col-sm-2 control-label">参考单价:</label>
+            <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction!=undefined">
+              USD {{transaction.originalPrice}}
+            </div>
+            <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction==undefined">
+              
+            </div>
+          </div>
+          <div class="row">
+            <label for="lastname" class="col-sm-offset-2 col-sm-2 control-label">账号:</label>
+            <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction!=undefined">
+              一般活存：{{transaction.accountNo}}
+            </div>
+            <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction==undefined">
+              
+            </div>
+          </div>
+          <div class="row">
+            <label for="lastname" class="col-sm-offset-2 col-sm-2 control-label">申购金额:</label>
+            <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction!=undefined">
+              TWD {{quantity}}
+            </div>
+            <div class="col-sm-6 default-value bug-fund-value" *ngIf="transaction==undefined">
+              
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" (click)="confirmBugFund()">确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

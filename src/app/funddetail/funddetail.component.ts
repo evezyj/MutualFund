@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FundHouse } from 'src/model/holding/FundHouse';
 import { HoldingDetails } from 'src/model/holding/HoldingDetails';
 import { Fund } from 'src/model/holding/Fund';
+import {Transaction} from 'src/model/transaction/transaction'
 
 @Component({
   selector: 'app-funddetail',
@@ -23,17 +24,64 @@ export class FunddetailComponent implements OnInit {
   filtertypes: Array<Fund>;
 
   funds: Array<Fund> = new Array<Fund>();
-  fundnames: Array<Fund> = new Array<Fund>();;
+  fundnames: Array<Fund> = new Array<Fund>();
+
+  fundaccountNo = '200000001';  // todo
+  customerNo = '10000001'; // todo
+  modalFund: any='';
+  transaction: Transaction;
+  FundOriginalPrice: number=30.3000;
+  quantity: 333333;
+  consentFlag: boolean;
+
   constructor(private http: HttpClient) { }
+
 
   ngOnInit() {
     this.getSearchResp();
+  }
+
+  setConsentFlag(e){
+    console.log();
+  }
+
+  submitBuyQuantity(){
+    let dom:any = document.getElementById('quantity')
+    this.quantity = dom.value;
+    console.log(this.quantity);
+  }
+
+  submitFund(submittedFund) {
+    if(submittedFund == null ){
+      alert("请重新选择基金");
+    }else{
+      console.log("submit==>",submittedFund);
+      console.log("submit==>",this.quantity);
+      this.modalFund = submittedFund;
+      this.transaction = new Transaction;
+      this.transaction.accountNo = this.fundaccountNo;
+      this.transaction.customerNo = this.customerNo;
+      this.transaction.fund = this.modalFund;
+      this.transaction.lastModifiedTime = new Date().toLocaleDateString();;
+      this.transaction.orderReferenceNumber = 'DKNGIODNK345KLNMEDKE34';
+      this.transaction.originalPrice = this.FundOriginalPrice;
+      this.transaction.quantity = this.quantity;
+    }
+  }
+
+  confirmBugFund(){
+    console.log("确认");
+    console.log("Transaction==>", this.transaction);
+    this.http.post('/private/v1/investments/mutualFunds/buy',this.transaction).subscribe((res: any) => {
+      console.log("confirm-res==>", res);
+    });
   }
 
   getSearchResp() {
 
     this.http.get('/private/v1/investments/mutualFunds/search').subscribe((res: SearchResp) => {
       this.dataList = res.data;
+      console.log("search==>", res.data);
       //const companys = [];
       this.dataList.forEach(element => {
         if (this.companys.length == 0) {
@@ -53,6 +101,7 @@ export class FunddetailComponent implements OnInit {
           this.funds.push(element);
         }
       });
+      console.log("funds:", this.funds, "companys:", this.companys);
       console.log("funds:" + this.funds.length, "companys:" + this.companys.length);
     });
 
@@ -107,7 +156,7 @@ export class FunddetailComponent implements OnInit {
         this.fundnames.push(this.funds[j]);
       }
     }
-    console.log(this.fundnames.length);
+    console.log("fundname==>", this.fundnames);
   }
 
   selectFund(code: string) {
@@ -120,9 +169,9 @@ export class FunddetailComponent implements OnInit {
         break;
       }
     }
-    console.log("fund:" + fund);
+    console.log("fund:", fund);
     this.displayFund(fund);
-    console.log("fund:" + fund);
+    console.log("fund:", fund);
   }
 
 }
