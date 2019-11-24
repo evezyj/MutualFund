@@ -32,7 +32,7 @@ export class FunddetailComponent implements OnInit {
 
   getSearchResp() {
 
-    this.http.get('http://localhost:8100/search').subscribe((res: SearchResp) => {
+    this.http.get('/private/v1/investments/mutualFunds/search').subscribe((res: SearchResp) => {
       this.dataList = res.data;
       //const companys = [];
       this.dataList.forEach(element => {

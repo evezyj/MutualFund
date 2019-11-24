@@ -19,7 +19,7 @@ export class BuyComponentComponent implements OnInit {
   }
 
   getHoldingResp() {
-    this.http.get('http://localhost:8100/holding').subscribe((res: HoldingResp) => {
+    this.http.get('/private/v1/investments/mutualFunds/10000001/holdings').subscribe((res: HoldingResp) => {
       this.data = res.data;
     });
   }
