@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FundHouse } from 'src/model/holding/FundHouse';
 import { HoldingDetails } from 'src/model/holding/HoldingDetails';
 import { Fund } from 'src/model/holding/Fund';
-import {Transaction} from 'src/model/transaction/transaction'
+import { Transaction } from 'src/model/transaction/transaction'
 
 @Component({
   selector: 'app-funddetail',
@@ -14,11 +14,12 @@ import {Transaction} from 'src/model/transaction/transaction'
 export class FunddetailComponent implements OnInit {
 
   resp: SearchResp;
-  dataList: Array<Fund> = new Array<Fund>();;
-  fundhouses: Array<FundHouse> = new Array<FundHouse>();;
-  filterFundHouse: Array<FundHouse> = new Array<FundHouse>();;
-  companys: Array<FundHouse> = new Array<FundHouse>();;
-  types: Array<Fund> = new Array<Fund>();;
+  dataList: Array<Fund> = new Array<Fund>();
+  fundhouses: Array<FundHouse> = new Array<FundHouse>();
+  filterFundHouse: Array<FundHouse> = new Array<FundHouse>();
+  //TODO All fund houses by filter
+  companys: Array<FundHouse> = new Array<FundHouse>();
+  types: Array<Fund> = new Array<Fund>();
   fundhouse: string;
   fundtypes: Array<Fund>;
   filtertypes: Array<Fund>;
@@ -28,9 +29,9 @@ export class FunddetailComponent implements OnInit {
 
   fundaccountNo = '200000001';  // todo
   customerNo = '10000001'; // todo
-  modalFund: any='';
+  modalFund: any = '';
   transaction: Transaction;
-  FundOriginalPrice: number=30.3000;
+  FundOriginalPrice: number = 30.3000;
   quantity: 333333;
   consentFlag: boolean;
 
@@ -41,22 +42,24 @@ export class FunddetailComponent implements OnInit {
     this.getSearchResp();
   }
 
-  setConsentFlag(e){
+  setConsentFlag(e) {
     console.log();
   }
 
-  submitBuyQuantity(){
-    let dom:any = document.getElementById('quantity')
+  submitBuyQuantity() {
+    let dom: any = document.getElementById('quantity')
     this.quantity = dom.value;
-    console.log(this.quantity);
+    //console.log(this.quantity);
   }
 
   submitFund(submittedFund) {
-    if(submittedFund == null ){
+    console.log('click submit fund...');
+    console.log('submittedFund==>', submittedFund);
+    if (submittedFund == null) {
       alert("请重新选择基金");
-    }else{
-      console.log("submit==>",submittedFund);
-      console.log("submit==>",this.quantity);
+    } else {
+      //console.log("submit==>", submittedFund);
+      //console.log("submit==>", this.quantity);
       this.modalFund = submittedFund;
       this.transaction = new Transaction;
       this.transaction.accountNo = this.fundaccountNo;
@@ -69,11 +72,11 @@ export class FunddetailComponent implements OnInit {
     }
   }
 
-  confirmBugFund(){
-    console.log("确认");
+  confirmBugFund() {
+    //console.log("确认");
     console.log("Transaction==>", this.transaction);
-    this.http.post('/private/v1/investments/mutualFunds/buy',this.transaction).subscribe((res: any) => {
-      console.log("confirm-res==>", res);
+    this.http.post('/private/v1/investments/mutualFunds/buy', this.transaction).subscribe((res: any) => {
+      //console.log("confirm-res==>", res);
     });
   }
 
@@ -101,32 +104,39 @@ export class FunddetailComponent implements OnInit {
           this.funds.push(element);
         }
       });
-      console.log("funds:", this.funds, "companys:", this.companys);
-      console.log("funds:" + this.funds.length, "companys:" + this.companys.length);
     });
+    console.log('companys==>', this.companys);
+
 
   }
   changeType(fundcode) {
+    console.log('change type==>', fundcode);
     let fundhousel = this.fundhouse;
+    this.types = [];
     this.filtertypes = [];
     this.dataList.forEach(element => {
       if (element.fundHouse.code === fundcode) {
         this.types.push(element);
       }
-      let flag = false;
-      for (var i = 0; i < this.types.length; i++) {
-        if (this.types[i].fundType != element.fundType) {
+    });
+    console.log('types==>', this.types);
+    let flag = false;
+    this.filtertypes.push(this.types[0]);
+    for (var i = 0; i < this.types.length; i++) {
+      for (var j = 0; j < this.filtertypes.length; j++) {
+        if (this.types[i].fundType != this.filtertypes[j].fundType) {
           flag = true;
         } else {
           flag = false;
         }
       }
       if (flag) {
-        this.filtertypes.push(element);
+        this.filtertypes.push(this.types[i]);
       }
-    });
-    this.fundtypes = new Array<Fund>();
-    this.filterType(this.filtertypes);
+    }
+    console.log('filter types==>', this.filtertypes);
+    // this.fundtypes = new Array<Fund>();
+    // this.filterType(this.filtertypes);
   }
 
   filterType(data: Array<Fund>) {
@@ -148,30 +158,26 @@ export class FunddetailComponent implements OnInit {
 
 
   displayFund(data: Fund) {
-    console.log('display:' + data);
     this.fundnames = new Array<Fund>();
-    for (var j = 0; j < this.funds.length; j++) {
-      console.log("data.fundType:" + data.fundType + ",this.funds[j].fundType ：" + this.funds[j].fundType + "，data.fundHouse.name：" + data.fundHouse.name + ",this.funds[j].fundHouse.name：" + this.funds[j].fundHouse.name);
-      if (data.fundType == this.funds[j].fundType && data.fundHouse.name == this.funds[j].fundHouse.name) {
-        this.fundnames.push(this.funds[j]);
+    for (var j = 0; j < this.dataList.length; j++) {
+
+      if (data.fundType == this.dataList[j].fundType && data.fundHouse.name == this.dataList[j].fundHouse.name) {
+        this.fundnames.push(this.dataList[j]);
       }
     }
-    console.log("fundname==>", this.fundnames);
+    //console.log("fundname==>", this.fundnames);
   }
 
   selectFund(code: string) {
-    console.log("this.fundnames.length:" + code);
+    console.log('code==>', code);
     let fund = null;
     for (var j = 0; j < this.dataList.length; j++) {
-      console.log("fund:" + code + " " + this.dataList[j].code);
       if (code == this.dataList[j].code) {
         fund = this.dataList[j];
         break;
       }
     }
-    console.log("fund:", fund);
+    console.log("fund==>", fund);
     this.displayFund(fund);
-    console.log("fund:", fund);
   }
-
 }
