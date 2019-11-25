@@ -6,6 +6,7 @@ import { HoldingDetails } from 'src/model/holding/HoldingDetails';
 import { Fund } from 'src/model/holding/Fund';
 import { Transaction } from 'src/model/transaction/transaction'
 
+
 @Component({
   selector: 'app-funddetail',
   templateUrl: './funddetail.component.html',
@@ -49,7 +50,7 @@ export class FunddetailComponent implements OnInit {
   submitBuyQuantity() {
     let dom: any = document.getElementById('quantity')
     this.quantity = dom.value;
-    //console.log(this.quantity);
+    console.log(this.quantity);
   }
 
   submitFund(submittedFund) {
@@ -66,19 +67,25 @@ export class FunddetailComponent implements OnInit {
       this.transaction.customerNo = this.customerNo;
       this.transaction.fund = this.modalFund;
       this.transaction.lastModifiedTime = new Date().toLocaleDateString();;
-      this.transaction.orderReferenceNumber = 'DKNGIODNK345KLNMEDKE34';
+      this.transaction.orderReferenceNumber = 0;
       this.transaction.originalPrice = this.FundOriginalPrice;
       this.transaction.quantity = this.quantity;
     }
   }
 
   confirmBugFund() {
-    //console.log("确认");
     console.log("Transaction==>", this.transaction);
     this.http.post('/private/v1/investments/mutualFunds/buy', this.transaction).subscribe((res: any) => {
-      //console.log("confirm-res==>", res);
+      console.log("confirm-res==>", res);
+      if (res.responseCode == 0) {
+        console.log('buy done...');
+        //this.showList();
+      }
     });
   }
+  // showList() {
+  //   throw new Error("Method not implemented.");
+  // }
 
   getSearchResp() {
 
